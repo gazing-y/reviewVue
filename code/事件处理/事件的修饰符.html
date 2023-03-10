@@ -27,6 +27,8 @@
             <!-- 阻止事件冒泡 （常用）-->
             <div class="demo1" @click="showInfo(1)">
                 <button @click.stop="showInfo(2)">提示1</button>
+                <!-- 修饰符可以连续写 -->
+                <a href="#" @click.prevent.stop="showInfo(1)">点我提示</a>
             </div>
 
             <!-- 事件只触发一次 -->

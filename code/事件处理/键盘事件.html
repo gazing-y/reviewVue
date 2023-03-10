@@ -15,7 +15,7 @@
             删除  =>    delete(捕获“删除”和“退格”键)
             退出  =>    esc
             空格  =>    space
-            换行  =>    tab
+            换行  =>    tab(特殊，必须配合keydown使用)
             上    =>    up
             下    =>    down
             左    =>    left
@@ -34,6 +34,8 @@
     <div id="root">
         <h2>欢迎{{name}}同学</h2>
         <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+        <!-- 指定Ctrl+y触发 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="showInfo">
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
     <script>
@@ -45,7 +47,7 @@
             },
             methods: {
                 showInfo(e) {
-                    // console.log(e.keyCode)
+                    // console.log(e.key,e.keyCode)
                     console.log(e.target.value)
                 }
             }
