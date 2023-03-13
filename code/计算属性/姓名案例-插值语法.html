@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName"><br>
+        <input type="text" v-model="lastName"><br>
+        <!-- 截取前0-3位 -->
+        <p>name: {{firstName.slice(0,3)}} - {{lastName}}</p>
+        <p>name: {{firstName}} - {{lastName}}</p>
+        <!-- <p>name: {{firstname +'-' +lastname}}</p> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                firstName: "zhang",
+                lastName: "xiaoming"
+            }
+        })
+    </script>
+</body>
+
+</html>
