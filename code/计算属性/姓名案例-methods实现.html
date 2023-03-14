@@ -12,9 +12,7 @@
     <div id="app">
         <input type="text" v-model="firstName"><br>
         <input type="text" v-model="lastName"><br>
-        <!-- 截取前0-3位 -->
-        <p>name: {{firstName.slice(0,3)}} - {{lastName}}</p>
-        <p>name: {{firstName}} - {{lastName}}</p>
+        <p>{{fullName()}}</p>
         <!-- <p>name: {{firstname +'-' +lastname}}</p> -->
     </div>
 
@@ -25,6 +23,11 @@
             data: {
                 firstName: "zhang",
                 lastName: "xiaoming"
+            },
+            methods: {
+                fullName() {
+                    return this.firstName + "-" + this.lastName
+                }
             }
         })
     </script>
