@@ -31,7 +31,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
     <script>
-        new Vue({
+        Vue.config.devtools = true
+        var vm = new Vue({
             el: "#app",
             data: {
                 firstName: "zhang",
@@ -49,6 +50,7 @@
                     },
                     // set什么时候调用？但fullName被修改时
                     set(value) {
+                        console.log("set被调用了！")
                         const arr = value.split('-')
                         this.firstName = arr[0]
                         this.lastName = arr[1]
