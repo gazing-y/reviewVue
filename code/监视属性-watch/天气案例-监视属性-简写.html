@@ -11,20 +11,15 @@
 <body>
     <div id="root">
         <h2>今天天气 {{info}}</h2>
-        <!-- 
-           绑定事件时： @xx=“yy” yy可以写一些简单的语句
-         -->
-        <button @click="isHot = !isHot">切换天气</button>
         <button @click="changeWeather">切换天气</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
     <script>
         Vue.config.devtools = true
-        new Vue({
+        const mv = new Vue({
             el: '#root',
             data: {
                 isHot: true,
-                test: "haha"
             },
             computed: {
                 info() {
@@ -36,6 +31,26 @@
                     this.isHot = !this.isHot
                 }
             },
+            watch: {
+                // isHot: {
+                // immediate: true,
+                // deep: true,
+                // handler(newVal, oldVal) {
+                //     console.log("isHot被修改了", newVal, oldVal);
+                // }
+                // },
+
+
+                // 第一种方式简写
+                // 当配置项只有handler时才可简写
+                isHot(newVal, oldVal) {
+                    console.log("isHot被修改了", newVal, oldVal);
+                }
+            }
+        })
+        // 第二张方式简写
+        vm.$watch('isHot', function (newVal, oldVal) {
+            console.log('isHot被修改了', newVal, oldVal)
         })
     </script>
 </body>
