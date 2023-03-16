@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        v-for指令
+            1.用于展示列表数据
+            2.语法：v-for="(item,index) in xxx" :key="yyy"
+            3.可遍历：数组、对象、字符串（少）、指定次数（少）
+     -->
+    <div id="root">
+        <!-- 遍历数组 -->
+        <ul>
+            <!-- <li v-for="item in persons" :key="item.id">{{item.name}}--{{item.age}}</li> -->
+            <!-- index  索引值 -->
+            <!-- <li v-for="(p,index) of persons" :key="index">{{p.name}}---{{index}}</li> -->
+            <li v-for="(p,index) in persons" :key="index">{{p.name}}---{{index}}</li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(value,k) of car" :key="k">
+                {{k}} --{{value}}
+            </li>
+        </ul>
+
+        <!-- 遍历字符串 -->
+        <ul>
+            <li v-for="(char,index) in str" :key="index">
+                {{char}}---{{index}}
+            </li>
+        </ul>
+
+        <!-- 遍历指定次数 -->
+        <ul>
+            <li v-for="(number,index) of 5" :key="index">
+                {{number}} --- {{index}}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        Vue.config.devtools = true
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: "01", name: "xiaoming", age: 18 },
+                    { id: "02", name: "zhangsan", age: 19 },
+                    { id: "03", name: "lisi", age: 21 }
+                ],
+                car: {
+                    name: "aodi",
+                    price: 70,
+                    color: 'red'
+                },
+                str: "hello"
+            },
+        })
+    </script>
+</body>
+
+</html>
