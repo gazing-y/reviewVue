@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <button @click="updateMa">更新马冬梅</button>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}---{{p.age}}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        Vue.config.devtools = true
+
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: "01", name: "马冬梅", age: 18 },
+                    { id: "02", name: "周冬雨", age: 19 },
+                    { id: "03", name: "周杰伦", age: 16 },
+                    { id: "04", name: "任嘉伦", age: 21 }
+                ],
+            },
+            methods: {
+                updateMa() {
+                    // this.persons[0].name = "马老师"  //有效
+                    // this.persons[0].age = 30   //有效
+                    this.persons[0] = { id: "01", name: "马老师", age: 30 } //失效
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
