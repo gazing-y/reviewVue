@@ -11,12 +11,12 @@
 <body>
 
     <div id="root">
-        <h3>school infos</h3>
+        <h3>school message</h3>
         <p>school:{{school}}</p>
         <p>adress:{{adress}}</p>
         <hr>
         <!-- 在student加sex属性 -->
-        <h3>student infos</h3>
+        <h3>student message</h3>
         <p>name:{{student.name}}</p>
         <p>sex:{{student.sex}}</p>
         <p>rAge:{{student.age.rAge}}</p>
@@ -37,6 +37,8 @@
                         rAge: 30,
                         sAge: 18
                     },
+                    // vue 不能监测到数组的修改，除push、pop、shift、unshift、splice、sort、reverse
+                    hobby: ["eat", "drink", "sleep"],
                     friends: [
                         { name: "zhangsan", age: 19 },
                         { name: "lisi", age: 23 }

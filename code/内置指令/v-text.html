@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        v-text指令：
+            1.作用：向其所在的节点中渲染文本内容
+            2.与插值语法的区别：v-text会替换节点中所有内容，{{xxx}}不会
+    -->
+    <div id="root">
+        <!-- 插值语法更灵活 -->
+        <P>{{name}}</P>
+        <!-- v-text 替换整个内容 -->
+        <P v-text="name"></P>
+        <P v-text="str"></P>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        Vue.config.devtools = true
+        Vue.filter('mySlice', function (value) {
+            return value.slice(0, 4)
+        })
+
+        new Vue({
+            el: "#root",
+            data: {
+                name: 'haha',
+                str: '<h2>hahhah</h2>'
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>
