@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <!-- <app></app> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        Vue.config.devtools = true
+
+        // 创建student组件（子组件写前面）
+        const student = {
+            template: `
+            <div>
+                <h3>{{name}}</h3>
+                <p>{{age}}</p>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'zhangsan',
+                    age: 18
+                }
+            },
+        }
+
+        // 创建school组件
+        const school = {
+            template: `
+            <div>
+                <h3>{{name}}</h3>
+                <p>{{address}}</p>
+                <student></student>
+            </div>
+            `,
+            data() {
+                return {
+                    name: '深圳大学',
+                    address: '深圳'
+                }
+            },
+            components: {
+                student
+            }
+        }
+        // 创建hello组件
+        const hello = {
+            template: `
+            <h2>{{mes}}</h2>
+            `,
+            data() {
+                return {
+                    mes: 'hello components!!'
+                }
+            }
+        }
+        // 创建app组件
+        const app = {
+            template: `
+            <div>
+                <hello></hello>
+                <school></school>    
+            </div>
+            `,
+            components: {
+                school,
+                hello
+            }
+        }
+
+        new Vue({
+            el: '#root',
+            // 第二步：注册组件(局部)
+            components: {
+                app //（一人之上，万人之下）
+            },
+            template: `<app></app>`//这样写 id="root" 里就不用写任何东西了
+        })
+
+    </script>
+
+</body>
+
+</html>

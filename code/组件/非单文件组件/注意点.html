@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    几个注意点：
+        1.关于组件名：
+            （1）一个单词组成：
+                第一种写法：school（首字母小写）
+                第二种写法：School（首字母大写）
+            （2）多个单词组成：
+                第一种写法：my-school（kebab-case命名）
+                第二种写法：MySchool（CamelCase命名）需要vue脚手架支持
+            （3）备注：
+                组件名尽可能回避HTML中已有的元素名称，eg：h2、H2都不行
+                可以使用name配置项指定组件在开发者感觉中呈现的名字
+
+        2.关于组件的标签
+            第一种写法：<school></school>
+            第二种写法：<school/>
+            备注：不使用脚手架时，<school/>会导致后续组件不能渲染
+
+        3.一个简写方式
+            const school = Vue.extend(option)  可简写为  const school = option
+ -->
+
+<body>
+    <div id="root">
+        <my-school></my-school>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script>
+        Vue.config.devtools = true
+
+        // 第一步：创建school组件
+        const s = {
+            name: 'hahaha',//开发者工具呈现的名称
+            template: `
+            <div>
+                <p>学校名称: {{schoolName}}</p>
+                <p>学校地址: {{address}}</p>
+            </div>
+            `,
+            data() {
+                return {
+                    schoolName: '深圳大学',
+                    address: '深圳'
+                }
+            },
+            methods: {
+                showTips() {
+                    console.log("tips:" + this.schoolName)
+                }
+            },
+        }
+
+
+        new Vue({
+            el: "#root",
+            // 第二步：注册组件（局部注册）
+            components: {
+                // school:school,
+                // 'MySchool': s, 脚手架里才适用
+                'my-school': s
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
