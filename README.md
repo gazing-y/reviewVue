@@ -2,5 +2,5 @@
 
 ## Project setup
 ```
-复习vue基础
+review Vue
 ```
