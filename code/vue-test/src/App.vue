@@ -1,63 +1,41 @@
 <template>
-    <div class="todo-container">
-        <div class="todo-wrap">
-            <!-- <MyHeader></MyHeader> -->
-            <MyHeader :addTodo="addTodo" />
-            <MyList :todos="todosLists" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-            <MyFooter :todos="todosLists" />
-        </div>
+    <div class="app">
+        <h2>{{ hello }}</h2>
+        <!-- 通过父组件给子组件传递函数类型的props实现：子给父传递数据 -->
+        <School :getSchoolName="getSchoolName"></School>
+        <hr>
+        <!-- -->
+        <Student></Student>
     </div>
 </template>
 
 <script>
-import MyHeader from './components/MyHeader'
-import MyFooter from './components/MyFooter'
-import MyList from './components/MyList'
+// 引入组件
+import School from './components/School'
+import Student from './components/Student'
 
 export default {
     name: 'App',
+    components: {
+        Student,
+        School
+    },
     data() {
         return {
-            todosLists: [
-                { id: '01', title: "hahaha", done: true },
-                { id: '02', title: "heihei", done: false },
-                { id: '03', title: "wuwuwu", done: true },
-            ]
+            hello: "hello"
         }
     },
     methods: {
-        // 添加一个todo
-        addTodo(todoObj) {
-            this.todosLists.unshift(todoObj)
-        },
-        // 勾选 or 取消勾选todo
-        checkTodo(id) {
-            this.todosLists.forEach((todo) => {
-                if (todo.id === id) {
-                    todo.done = !todo.done
-                }
-            })
-        },
-        // 删除
-        deleteTodo(id) {
-            this.todosLists = this.todosLists.filter((todo) => {
-                return todo.id !== id
-            })
+        getSchoolName(name) {
+            console.log("hhhhh", name);
         }
-    },
-    components: {
-        MyHeader,
-        MyFooter,
-        MyList
     }
 }
 </script>
-
+<!-- lang 默认为css -->
 <style scoped lang="less">
-.todo-container {
-    width: 500px;
-    padding: 10px;
-    display: inline-block;
-    border: 2px solid rgb(119, 141, 238);
+.app {
+    padding: 5px;
+    background-color: rgb(190, 238, 245);
 }
 </style>
