@@ -1,0 +1,63 @@
+<template>
+    <div class="todo-container">
+        <div class="todo-wrap">
+            <!-- <MyHeader></MyHeader> -->
+            <MyHeader :addTodo="addTodo" />
+            <MyList :todos="todosLists" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+            <MyFooter :todos="todosLists" />
+        </div>
+    </div>
+</template>
+
+<script>
+import MyHeader from './components/MyHeader'
+import MyFooter from './components/MyFooter'
+import MyList from './components/MyList'
+
+export default {
+    name: 'App',
+    data() {
+        return {
+            todosLists: [
+                { id: '01', title: "hahaha", done: true },
+                { id: '02', title: "heihei", done: false },
+                { id: '03', title: "wuwuwu", done: true },
+            ]
+        }
+    },
+    methods: {
+        // 添加一个todo
+        addTodo(todoObj) {
+            this.todosLists.unshift(todoObj)
+        },
+        // 勾选 or 取消勾选todo
+        checkTodo(id) {
+            this.todosLists.forEach((todo) => {
+                if (todo.id === id) {
+                    todo.done = !todo.done
+                }
+            })
+        },
+        // 删除
+        deleteTodo(id) {
+            this.todosLists = this.todosLists.filter((todo) => {
+                return todo.id !== id
+            })
+        }
+    },
+    components: {
+        MyHeader,
+        MyFooter,
+        MyList
+    }
+}
+</script>
+
+<style scoped lang="less">
+.todo-container {
+    width: 500px;
+    padding: 10px;
+    display: inline-block;
+    border: 2px solid rgb(119, 141, 238);
+}
+</style>
