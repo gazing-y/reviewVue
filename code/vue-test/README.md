@@ -132,3 +132,51 @@ npm run build
 3.使用v-model时要切记：v-model绑定的值不能是props传过来的值，因为props是不可以修改的！！！
 
 4.props传过来的若是对象类型的值，修改对象中的属性时Vue不会报错，但不推荐这样做
+
+### 组件的自定义事件
+  1.一种组件间通信的方式，适用于：子组件 ===> 父组件
+  2.使用场景：A 是父组件，a 是子组件，a 想给 A 传数据，那么就要在 A 中给 a 绑定自定义事件(事件的回调在A中)
+  3.绑定自定义事件
+    （1）第一种方式：在父组件中：<Demo @onmyself="test"></Demo> 或 <Demo v-on:onmyself="test"></Demo>
+    （2）第二种方式：在父组件中 
+        <Demo ref="demo"></Demo>
+        ...
+        mounted(){
+          this.$ref.xxx.$on('onmyself',this.test)
+        }
+    （3）若想让自定义事件只能触发一次，可以使用 once 修饰符，或 $once 方法
+
+  4.触发自定义事件: this.$emit('onmyself',数据)
+
+  5.解绑自定义事件：this.$off('onmyself')
+
+  6.组件上也可以绑定原生DOM事件，需要使用  native 修饰符
+
+  7.注意：通过this.$refs.xxx.$on('onmyself',回调) 绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则this指向会出问题
+
+### 全局事件总线
+  1.一种组件间通信的方式，适用于任意组件间的通信
+
+  2.安装全局事件总线
+    new Vue({
+      ...
+      beforeCreate(){
+        Vue.prototype.$bus = this  //安装全局事件总线，$bus就是当前应用的vm
+      },
+      ...
+    })
+  
+  3.使用事件总线
+    1)接收数据：A组件想接收数据，则在A组件中给 $bus 绑定自定义事件，事件的回调留在A组件自身
+    methods(){
+      demo(data){...}
+    },
+    ...
+    mounted(){
+      this.$bus.$on('xxx',this.demo)
+    }
+
+    2)提供数据
+    this.$bus.$emit('xxx',数据)
+
+  4.最好在 beforeDestroy 钩子中，用 $off 去解绑当前组件所用到的事件

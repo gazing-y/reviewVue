@@ -8,6 +8,7 @@
 </template>
 <script>
 export default {
+    // eslint-disable-next-line vue/multi-word-component-names
     name: "School",
     props: ['getSchoolName'],
     data() {
@@ -25,6 +26,7 @@ export default {
 </script>
 <style scoped>
 .school {
+    padding: 5px;
     background: rgb(203, 245, 224);
 }
 </style>

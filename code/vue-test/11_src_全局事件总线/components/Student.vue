@@ -1,14 +1,15 @@
 <template>
     <div class="student">
-        <h2 class="tit">Student111</h2>
+        <h2 class="tit">Student</h2>
         <h3>student name:{{ name }}</h3>
         <h3>student age:{{ age }}</h3>
-        <button></button>
+        <button @click="sendStudentName">把学生名给school组件</button>
     </div>
 </template>
 <script>
 
 export default {
+    // eslint-disable-next-line vue/multi-word-component-names
     name: "Student",
     data() {
         return {
@@ -16,6 +17,14 @@ export default {
             age: 20,
         }
     },
+    mounted() {
+        console.log('student x:', this.$bus)
+    },
+    methods: {
+        sendStudentName() {
+            this.$bus.$emit('hello', this.name)
+        }
+    }
 }
 </script>
 <style scoped>
