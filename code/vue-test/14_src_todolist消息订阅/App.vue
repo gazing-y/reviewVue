@@ -35,14 +35,6 @@ export default {
                 }
             })
         },
-        // 修改
-        updateTodo(id, title) {
-            this.todosLists.forEach((todo) => {
-                if (todo.id === id) {
-                    todo.title = title
-                }
-            })
-        },
         // 删除
         deleteTodo(_, id) {
             this.todosLists = this.todosLists.filter((todo) => {
@@ -78,12 +70,10 @@ export default {
     },
     mounted() {
         this.$bus.$on('checkTodo', this.checkTodo)
-        this.$bus.$on('updateTodo', this.updateTodo)
         this.pubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
     },
     beforeDestroy() {
         this.$bus.$off('checkTodo')
-        this.$bus.$off('updateTodo')
         pubsub.unsubscribe(this.pubId)
     }
 }

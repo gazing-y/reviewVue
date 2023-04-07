@@ -22,7 +22,7 @@ export default {
             const todoObj = {
                 id: nanoid(),
                 title: this.title,
-                done: false,
+                done: false
 
             }
             // 调整App组件去添加一个todo对象

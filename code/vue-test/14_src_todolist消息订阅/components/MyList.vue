@@ -29,14 +29,14 @@ ul {
         justify-content: space-between;
 
         .btn {
-            opacity: 0;
+            display: none;
         }
 
         &:hover {
             background: rgb(197, 243, 205);
 
             .btn {
-                opacity: 1;
+                display: block;
             }
         }
     }

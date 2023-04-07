@@ -180,3 +180,24 @@ npm run build
     this.$bus.$emit('xxx',数据)
 
   4.最好在 beforeDestroy 钩子中，用 $off 去解绑当前组件所用到的事件
+
+### 消息订阅与发布（用的不多，需外部js库）
+  1.一种组件间通信的方式，适用于任意组件间通信
+  2.使用步骤：
+    1) 安装pubsub: npm i pubsub-js
+    2) 引入： import pubsub from 'pubsub-js'
+    3) 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的 回调留在A组件自身
+      methods(){
+        demo(data){...}
+      }
+      ...
+      mounted(){
+        this.pid = pubsub.subscribe('xxx',this.demo)//订阅消息
+      }
+    4) 提供数据 pubsub.publish('xxx',数据)
+    5) 最好在beforeDestroy钩子中，用pubsub.unsubscribe(pid) 去取消订阅
+
+### $nextTick
+  1.语法： this.$nextTick(回调函数)
+  2.作用：在下一次dom 更新结束后执行其指定的回调
+  3.什么时候用：当改变数据后，要基于更新后的新dom进行某些操作时，要在 nextTick 所指定的回调函数中执行

@@ -13,7 +13,6 @@
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyList from './components/MyList'
-import { toUnicode } from 'punycode'
 
 export default {
     name: 'App',

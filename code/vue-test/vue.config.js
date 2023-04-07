@@ -9,7 +9,3 @@ module.exports = defineConfig({
   lintOnSave:false,//关闭语法检查
   transpileDependencies: true,
 })
-
-module.exports = defineConfig({
- lintOnSave:false
-})

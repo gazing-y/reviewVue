@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import pubsub from 'pubsub-js'
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyList from './components/MyList'
@@ -35,16 +34,8 @@ export default {
                 }
             })
         },
-        // 修改
-        updateTodo(id, title) {
-            this.todosLists.forEach((todo) => {
-                if (todo.id === id) {
-                    todo.title = title
-                }
-            })
-        },
         // 删除
-        deleteTodo(_, id) {
+        deleteTodo(id) {
             this.todosLists = this.todosLists.filter((todo) => {
                 return todo.id !== id
             })
@@ -78,13 +69,11 @@ export default {
     },
     mounted() {
         this.$bus.$on('checkTodo', this.checkTodo)
-        this.$bus.$on('updateTodo', this.updateTodo)
-        this.pubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
+        this.$bus.$on('deleteTodo', this.deleteTodo)
     },
     beforeDestroy() {
         this.$bus.$off('checkTodo')
-        this.$bus.$off('updateTodo')
-        pubsub.unsubscribe(this.pubId)
+        this.$bus.$off('deleteTodo')
     }
 }
 </script>
